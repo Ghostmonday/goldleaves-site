@@ -43,9 +43,13 @@ export default function ExpandableFormSection() {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors, isSubmitting },
     reset,
   } = useForm({ resolver: zodResolver(formSchema), defaultValues: { name: "", email: "", projectType: "", budget: "", description: "", agree: false } });
+
+  const projectTypeVal = watch("projectType");
+  const budgetVal = watch("budget");
 
   useEffect(() => {
     if (open && ref.current) {
@@ -76,7 +80,7 @@ export default function ExpandableFormSection() {
                       <h3 className="text-xl font-semibold text-gray-900">Project Intake</h3>
                       <p className="text-sm text-gray-600 mt-1">Provide a few details and we'll get back within 24 hours.</p>
                     </div>
-                    <Button variant="ghost" onClick={closeForm} className="text-gray-600 hover:text-gray-900">Cancel</Button>
+                    <Button aria-label="Close form" variant="ghost" onClick={closeForm} className="text-gray-600 hover:text-gray-900">Cancel</Button>
                   </div>
 
                   <form className="mt-6 space-y-5" onSubmit={handleSubmit(onSubmit)}>
@@ -95,9 +99,9 @@ export default function ExpandableFormSection() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <Label>Project Type</Label>
-                        <Select onValueChange={(v) => setValue("projectType", v, { shouldValidate: true })}>
-                          <SelectTrigger>
+                        <Label htmlFor="projectType">Project Type</Label>
+                        <Select value={projectTypeVal} onValueChange={(v) => setValue("projectType", v, { shouldValidate: true })}>
+                          <SelectTrigger id="projectType" data-testid="projectType-trigger" aria-label="Project Type">
                             <SelectValue placeholder="Select a type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -109,9 +113,9 @@ export default function ExpandableFormSection() {
                         {errors.projectType && <p className="text-xs text-red-600 mt-1">{errors.projectType.message}</p>}
                       </div>
                       <div>
-                        <Label>Budget Range</Label>
-                        <Select onValueChange={(v) => setValue("budget", v, { shouldValidate: true })}>
-                          <SelectTrigger>
+                        <Label htmlFor="budget">Budget Range</Label>
+                        <Select value={budgetVal} onValueChange={(v) => setValue("budget", v, { shouldValidate: true })}>
+                          <SelectTrigger id="budget" data-testid="budget-trigger" aria-label="Budget Range">
                             <SelectValue placeholder="Select a budget" />
                           </SelectTrigger>
                           <SelectContent>

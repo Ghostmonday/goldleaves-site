@@ -35,8 +35,9 @@ function Hero() {
             </a>
           </div>
           <p className="mt-4 text-sm text-gray-700">
-            Prefer email? You can also reach us directly at {" "}
-            <a className="underline" href={`mailto:${site.brand.email}`}>{site.brand.email}</a>.
+            {site.hero.contactNote.split("projects@goldleaves.cloud")[0]}
+            <a className="underline" href={`mailto:${site.brand.email}`}>projects@goldleaves.cloud</a>
+            {site.hero.contactNote.includes("projects@goldleaves.cloud") ? site.hero.contactNote.split("projects@goldleaves.cloud")[1] : ""}
           </p>
           <p className="mt-3 text-xs text-gray-500">{site.dummyNotice}</p>
         </div>
@@ -76,24 +77,23 @@ function TierCard({ tier }) {
   const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
   return (
-    <div className={`border rounded-lg p-6 bg-white flex flex-col ${tier.recommended ? "border-2" : "border"}`} style={{ borderColor: tier.recommended ? accent : "#E5E7EB" }}>
+    <div className={`rounded-lg p-6 bg-white flex flex-col transform shadow-sm hover:shadow-lg hover:-translate-y-1 duration-200 ${tier.highlight ? "border-2" : "border"}`} style={{ borderColor: tier.highlight ? accent : "#E5E7EB" }}>
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-sm text-gray-500">{tier.action}</div>
-          <div className="mt-1 text-base font-semibold text-gray-900">{tier.descriptor}</div>
+          <div className="text-base font-semibold text-gray-900">{tier.name}</div>
+          <div className="mt-1 text-3xl font-extrabold text-gray-900">{tier.price}</div>
         </div>
-        {tier.recommended && (
+        {tier.highlight && (
           <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ backgroundColor: accent, color: "#111" }}>Recommended</span>
         )}
       </div>
-      <div className="mt-3 text-3xl font-extrabold text-gray-900">{tier.price}</div>
       <ul className="mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside">
         {tier.features.map((f) => (
           <li key={f}>{f}</li>
         ))}
       </ul>
       <div className="mt-6">
-        <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>Start this build</button>
+        <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>{tier.cta}</button>
       </div>
     </div>
   );
@@ -110,13 +110,13 @@ function Pricing() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           {top.map((tier) => (
-            <TierCard key={tier.descriptor} tier={tier} />
+            <TierCard key={tier.name} tier={tier} />
           ))}
         </div>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {bottom.map((tier) => (
-            <TierCard key={tier.descriptor} tier={tier} />
+            <TierCard key={tier.name} tier={tier} />
           ))}
         </div>
       </div>

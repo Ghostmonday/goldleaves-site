@@ -7,6 +7,7 @@ export const site = {
   hero: {
     headline: "Custom Software. Clean Execution.",
     subtext: "Apps, dashboards, automations, and AI tools — shipped fast, built right.",
+    contactNote: "You can also email us directly at projects@goldleaves.cloud",
     ctaLabel: "Start a Project",
     ctaHref: "https://example.com/intake", // unused now; CTA handled inline
     secondaryCtaLabel: "Email us",
@@ -22,60 +23,61 @@ export const site = {
   ],
   pricing: [
     {
-      action: "Establish",
-      descriptor: "Web Presence Starter",
+      name: "Establish — Web Presence Starter",
       price: "$750+",
       features: [
-        "Beautiful, fast‑loading single‑page website",
-        "Custom domain (client‑provided or procured at added cost)",
-        "Mobile‑responsive design",
-        "Deployed and delivered with live hosting"
-      ]
+        "Custom-built site (single-page or multi-page)",
+        "Mobile-optimized design",
+        "Basic contact form or calendar link",
+        "1-year domain & lightweight hosting included"
+      ],
+      cta: "Start this build"
     },
     {
-      action: "Expand",
-      descriptor: "Business Site",
+      name: "Expand — Business Site",
       price: "$1,500+",
       features: [
-        "Multi‑page website (Home, About, Contact, Services)",
-        "Custom contact form",
-        "Basic branding integration (colors, logo, copy editing)",
-        "Analytics + performance‑optimized"
-      ]
+        "Multiple core views (Home, About, Contact, Services)",
+        "Responsive branding across pages",
+        "Optional integrations (video, maps, intake forms)",
+        "Early-stage SEO and mobile performance tuning"
+      ],
+      cta: "Start this build",
+      highlight: false
     },
     {
-      action: "Operate",
-      descriptor: "Full‑stack Site with Admin",
+      name: "Operate — Full Stack Site with Admin",
       price: "$3,000+",
       features: [
-        "Includes client dashboard (admin panel)",
-        "CMS or basic content‑editing tools",
-        "User auth, database integration, cloud‑hosted backend",
-        "Deployed to scalable environment"
+        "Custom backend (auth + content/admin panel)",
+        "Database & session management included",
+        "Email integration + basic dashboards",
+        "Secure deploy & performance monitoring"
       ],
-      recommended: true
+      cta: "Start this build",
+      highlight: true
     },
     {
-      action: "Scale",
-      descriptor: "Web App MVP",
+      name: "Scale — Web App MVP",
       price: "$5,000+",
       features: [
-        "Lightweight SaaS‑style application",
-        "Core features fully functional (no external APIs)",
-        "Includes mobile‑friendly frontend and backend",
-        "Built with scalability in mind"
-      ]
+        "Lightweight SaaS-style application",
+        "Core business logic & workflows",
+        "User roles, session state, protected routes",
+        "Deploy-ready with no external APIs"
+      ],
+      cta: "Start this build"
     },
     {
-      action: "Command",
-      descriptor: "Full SaaS or API‑Driven Platform",
+      name: "Command — AI-Driven Platform",
       price: "$8,500+",
       features: [
-        "Full‑stack platform with external API integrations",
-        "Payments, user roles, notifications, etc.",
-        "Deployment‑ready, client retains full IP rights",
-        "Professional code quality, built to scale"
-      ]
+        "AI features: assistants, webhooks, pipelines",
+        "Authentication + authorization flows",
+        "Database, platform-managed APIs, messaging",
+        "Deploy included (optional admin UI)"
+      ],
+      cta: "Start this build"
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

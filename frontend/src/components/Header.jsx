@@ -1,8 +1,11 @@
 import React from "react";
 import { site } from "../mock";
+import { useIntakeForm } from "../context/IntakeFormContext";
 
 export default function Header() {
   const accent = site.brand.accent;
+  const { openForm } = useIntakeForm();
+
   return (
     <header className="w-full border-b border-gray-200 bg-white">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -16,13 +19,13 @@ export default function Header() {
           <a href="#contact" className="text-gray-700 hover:text-gray-900">Contact</a>
         </nav>
         <div className="hidden md:block">
-          <a
-            href={site.hero.ctaHref}
+          <button
+            onClick={() => openForm()}
             className="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold"
             style={{ backgroundColor: accent, color: "#111" }}
           >
             {site.hero.ctaLabel}
-          </a>
+          </button>
         </div>
       </div>
     </header>

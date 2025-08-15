@@ -1,11 +1,14 @@
 import React from "react";
 import { site } from "../mock";
 import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } from "lucide-react";
+import ExpandableFormSection from "../components/ExpandableFormSection";
+import { useIntakeForm } from "../context/IntakeFormContext";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
 function Hero() {
   const accent = site.brand.accent;
+  const { openForm } = useIntakeForm();
   return (
     <section id="top" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
@@ -17,13 +20,13 @@ function Hero() {
             {site.hero.subtext}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a
-              href={site.hero.ctaHref}
+            <button
+              onClick={() => openForm()}
               className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
               style={{ backgroundColor: accent, color: "#111" }}
             >
               {site.hero.ctaLabel}
-            </a>
+            </button>
             <a
               href={site.hero.secondaryCtaHref}
               className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900"
@@ -83,7 +86,7 @@ function Pricing() {
               </ul>
               {tier.note && <div className="mt-4 text-xs text-gray-500">{tier.note}</div>}
               <div className="mt-6">
-                <a href={site.hero.ctaHref} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>Start here</a>
+                <button onClick={() => document.getElementById("top").scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>Start here</button>
               </div>
             </div>
           ))}
@@ -95,6 +98,7 @@ function Pricing() {
 
 function Inquiry() {
   const accent = site.brand.accent;
+  const { openForm } = useIntakeForm();
   return (
     <section id="contact" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
@@ -104,7 +108,7 @@ function Inquiry() {
             <p className="mt-1 text-gray-700">Email us at <a href={`mailto:${site.brand.email}`} className="underline text-gray-900">{site.brand.email}</a> or start with the intake link.</p>
           </div>
           <div className="flex items-center gap-3 w-full md:w-auto">
-            <a href={site.hero.ctaHref} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold w-full md:w-auto" style={{ backgroundColor: accent, color: "#111" }}>Start a Project</a>
+            <button onClick={() => openForm()} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold w-full md:w-auto" style={{ backgroundColor: accent, color: "#111" }}>Start a Project</button>
             <a href={`mailto:${site.brand.email}`} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900 w-full md:w-auto">Email us</a>
           </div>
         </div>
@@ -117,6 +121,7 @@ export default function Landing() {
   return (
     <main>
       <Hero />
+      <ExpandableFormSection />
       <Services />
       <Pricing />
       <Inquiry />

@@ -32,10 +32,17 @@ export const site = {
         "1-year domain & lightweight hosting included"
       ],
       cta: "Start this build",
-      highlight: false
+      highlight: false,
+      timeline: "~1 week",
+      includes: [
+        "Custom landing page",
+        "Domain + hosting guidance",
+        "Contact form integration",
+        "Handoff with full ownership"
+      ]
     },
     {
-      name: "Expand — Business Site",
+      name: "Expand — Business Site Bundle",
       price: "$1,500+",
       features: [
         "Multiple core views (Home, About, Contact, Services)",
@@ -44,10 +51,17 @@ export const site = {
         "Early-stage SEO and mobile performance tuning"
       ],
       cta: "Start this build",
-      highlight: false
+      highlight: false,
+      timeline: "~1–2 weeks",
+      includes: [
+        "Multi-page responsive site",
+        "Simple admin dashboard or blog",
+        "DNS, SSL, and analytics",
+        "SEO setup and mobile polish"
+      ]
     },
     {
-      name: "Operate — Full Stack Site with Admin",
+      name: "Operate — Production System (Recommended)",
       price: "$3,000+",
       features: [
         "Custom backend (auth + content/admin panel)",
@@ -56,10 +70,17 @@ export const site = {
         "Secure deploy & performance monitoring"
       ],
       cta: "Start this build",
-      highlight: true
+      highlight: true,
+      timeline: "~2–3 weeks",
+      includes: [
+        "Full-stack web application",
+        "Custom API or backend logic",
+        "Auth, CRUD, DB setup",
+        "Documentation + code ownership"
+      ]
     },
     {
-      name: "Scale — Web App MVP",
+      name: "Scale — Integrated SaaS or Client Portal",
       price: "$5,000+",
       features: [
         "Lightweight SaaS-style application",
@@ -68,10 +89,17 @@ export const site = {
         "Deploy-ready with no external APIs"
       ],
       cta: "Start this build",
-      highlight: false
+      highlight: false,
+      timeline: "~3–4 weeks",
+      includes: [
+        "Multi-user architecture",
+        "Payments, roles, notifications",
+        "AI integration or external APIs",
+        "Deployment + CI/CD pipeline"
+      ]
     },
     {
-      name: "Command — AI-Driven Platform",
+      name: "Command — Fully Managed Infra",
       price: "$8,500+",
       features: [
         "AI features: assistants, webhooks, pipelines",
@@ -80,7 +108,14 @@ export const site = {
         "Deploy included (optional admin UI)"
       ],
       cta: "Start this build",
-      highlight: false
+      highlight: false,
+      timeline: "~4–6 weeks",
+      includes: [
+        "Full SaaS product + internal tools",
+        "Admin panel, billing, security",
+        "Multi-env staging + analytics",
+        "Scaling + monitoring setup"
+      ]
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

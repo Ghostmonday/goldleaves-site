@@ -45,7 +45,7 @@ function Hero() {
         {/* Trusted by row */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 text-gray-500 text-sm">
           {["ACME", "Northwind", "Globex", "Umbrella", "Soylent"].map((brand) => (
-            <div key={brand} className="border border-gray-200 rounded-md py-3 px-4 text-center bg-white/60">{brand}</div>
+            <div key={brand} className="border border-gray-200 rounded-md py-3 px-4 text-center bg-white/70">{brand}</div>
           ))}
         </div>
       </div>
@@ -99,6 +99,24 @@ function TierCard({ tier }) {
           <li key={f}>{f}</li>
         ))}
       </ul>
+
+      {/* Timeline + Includes */}
+      <div className="mt-5 border-t border-gray-200 pt-4">
+        {tier.timeline && (
+          <div className="text-xs font-medium text-gray-600">Timeline: <span className="text-gray-800">{tier.timeline}</span></div>
+        )}
+        {tier.includes && tier.includes.length > 0 && (
+          <div className="mt-2">
+            <div className="text-xs font-medium text-gray-600">Includes:</div>
+            <ul className="mt-1 list-disc list-inside text-sm text-gray-700 space-y-1">
+              {tier.includes.map((i) => (
+                <li key={i}>{i}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="mt-6">
         <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md" style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}>{tier.cta}</button>
       </div>

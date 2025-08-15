@@ -3,7 +3,7 @@ export const site = {
     name: "GoldLeaves",
     email: "projects@goldleaves.cloud",
     accent: "#BFA32F", // subtle gold
-    github: "#" // replace with live repo URL once created
+    github: "https://github.com/Ghostmonday/goldleaves-site" // live repo URL
   },
   hero: {
     headline: "Independent full‑stack engineer shipping production‑ready software.",

@@ -21,7 +21,7 @@ export default function Footer() {
           <a href="#services" className="hover:text-gray-900">Services</a>
           <a href="#pricing" className="hover:text-gray-900">Pricing</a>
           <a href="#contact" className="hover:text-gray-900">Contact</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer" className="text-gray-700 hover:text-gray-900" aria-label="GitHub">
+          <a href={site.brand.github || "#"} target="_blank" rel="noreferrer" className="text-gray-700 hover:text-gray-900" aria-label="GitHub">
             <Github size={18} />
           </a>
         </div>

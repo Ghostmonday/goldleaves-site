@@ -2,7 +2,8 @@ export const site = {
   brand: {
     name: "GoldLeaves",
     email: "projects@goldleaves.cloud",
-    accent: "#BFA32F" // subtle gold
+    accent: "#BFA32F", // subtle gold
+    github: "#" // replace with live repo URL once created
   },
   hero: {
     headline: "Independent full‑stack engineer shipping production‑ready software.",

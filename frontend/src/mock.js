@@ -22,29 +22,30 @@ export const site = {
   ],
   pricing: [
     {
-      name: "Web Presence Starter",
+      action: "Establish",
+      descriptor: "Web Presence Starter",
       price: "$750+",
       features: [
         "Beautiful, fast‑loading single‑page website",
         "Custom domain (client‑provided or procured at added cost)",
         "Mobile‑responsive design",
         "Deployed and delivered with live hosting"
-      ],
-      note: ""
+      ]
     },
     {
-      name: "Business Site",
+      action: "Expand",
+      descriptor: "Business Site",
       price: "$1,500+",
       features: [
         "Multi‑page website (Home, About, Contact, Services)",
         "Custom contact form",
         "Basic branding integration (colors, logo, copy editing)",
         "Analytics + performance‑optimized"
-      ],
-      note: ""
+      ]
     },
     {
-      name: "Full‑Stack Site with Admin",
+      action: "Operate",
+      descriptor: "Full‑stack Site with Admin",
       price: "$3,000+",
       features: [
         "Includes client dashboard (admin panel)",
@@ -52,29 +53,29 @@ export const site = {
         "User auth, database integration, cloud‑hosted backend",
         "Deployed to scalable environment"
       ],
-      note: ""
+      recommended: true
     },
     {
-      name: "Web App MVP",
+      action: "Scale",
+      descriptor: "Web App MVP",
       price: "$5,000+",
       features: [
         "Lightweight SaaS‑style application",
         "Core features fully functional (no external APIs)",
         "Includes mobile‑friendly frontend and backend",
         "Built with scalability in mind"
-      ],
-      note: ""
+      ]
     },
     {
-      name: "Full SaaS or API‑Driven Platform",
+      action: "Command",
+      descriptor: "Full SaaS or API‑Driven Platform",
       price: "$8,500+",
       features: [
         "Full‑stack platform with external API integrations",
         "Payments, user roles, notifications, etc.",
         "Deployment‑ready, client retains full IP rights",
         "Professional code quality, built to scale"
-      ],
-      note: ""
+      ]
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

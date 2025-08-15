@@ -3,6 +3,7 @@ import { site } from "../mock";
 import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } from "lucide-react";
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -22,8 +23,8 @@ function Hero() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => openForm()}
-              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold"
-              style={{ backgroundColor: accent, color: "#111" }}
+              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}
             >
               {site.hero.ctaLabel}
             </button>
@@ -39,7 +40,13 @@ function Hero() {
             <a className="underline" href={`mailto:${site.brand.email}`}>projects@goldleaves.cloud</a>
             {site.hero.contactNote.includes("projects@goldleaves.cloud") ? site.hero.contactNote.split("projects@goldleaves.cloud")[1] : ""}
           </p>
-          <p className="mt-3 text-xs text-gray-500">{site.dummyNotice}</p>
+        </div>
+
+        {/* Trusted by row */}
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 text-gray-500 text-sm">
+          {["ACME", "Northwind", "Globex", "Umbrella", "Soylent"].map((brand) => (
+            <div key={brand} className="border border-gray-200 rounded-md py-3 px-4 text-center bg-white/60">{brand}</div>
+          ))}
         </div>
       </div>
     </section>
@@ -57,7 +64,7 @@ function Services() {
           {site.services.map((s) => {
             const Icon = ICONS[s.icon] || Code2;
             return (
-              <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white">
+              <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
                     <Icon size={18} color={accent} />
@@ -77,14 +84,14 @@ function TierCard({ tier }) {
   const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
   return (
-    <div className={`rounded-lg p-6 bg-white flex flex-col transform shadow-sm hover:shadow-lg hover:-translate-y-1 duration-200 ${tier.highlight ? "border-2" : "border"}`} style={{ borderColor: tier.highlight ? accent : "#E5E7EB" }}>
+    <div className={`rounded-lg p-6 bg-white flex flex-col transition duration-200 transform hover:-translate-y-1 hover:shadow-lg ${tier.highlight ? "border-2" : "border"}`} style={{ borderColor: tier.highlight ? accent : "#E5E7EB", backgroundColor: tier.highlight ? "#fffdf3" : "#ffffff" }}>
       <div className="flex items-center justify-between">
         <div>
           <div className="text-base font-semibold text-gray-900">{tier.name}</div>
           <div className="mt-1 text-3xl font-extrabold text-gray-900">{tier.price}</div>
         </div>
         {tier.highlight && (
-          <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ backgroundColor: accent, color: "#111" }}>Recommended</span>
+          <span className="text-xs font-semibold px-2 py-1 rounded-sm border" style={{ borderColor: accent, color: "#111", backgroundColor: "#fff" }}>Recommended</span>
         )}
       </div>
       <ul className="mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside">
@@ -93,7 +100,7 @@ function TierCard({ tier }) {
         ))}
       </ul>
       <div className="mt-6">
-        <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>{tier.cta}</button>
+        <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md" style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}>{tier.cta}</button>
       </div>
     </div>
   );
@@ -119,27 +126,61 @@ function Pricing() {
             <TierCard key={tier.name} tier={tier} />
           ))}
         </div>
+
+        <div className="mt-6 text-sm text-gray-700">
+          <div>• Full IP ownership. No vendor lock‑in.</div>
+          <div>• Response within 24h. Kickoff in 3–5 days.</div>
+        </div>
       </div>
     </section>
   );
 }
 
-function Inquiry() {
-  const accent = site.brand.accent;
-  const { openForm } = useIntakeForm();
+function HowWeWork() {
+  const steps = [
+    { title: "Scope", desc: "Focused discovery and clear deliverables." },
+    { title: "Build", desc: "Iterative development with tight feedback loops." },
+    { title: "Launch", desc: "Deployment, handoff, docs, and support." },
+  ];
   return (
-    <section id="contact" className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <div className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">Ready to discuss your project?</h3>
-            <p className="mt-1 text-gray-700">Email us at <a href={`mailto:${site.brand.email}`} className="underline text-gray-900">{site.brand.email}</a> or start with the intake link.</p>
-          </div>
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <button onClick={() => openForm()} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold w-full md:w-auto" style={{ backgroundColor: site.brand.accent, color: "#111" }}>Start a Project</button>
-            <a href={`mailto:${site.brand.email}`} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900 w-full md:w-auto">Email us</a>
-          </div>
+    <section className="bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {steps.map((s) => (
+            <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white text-gray-900 transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
+              <div className="text-sm font-semibold text-gray-500">{s.title}</div>
+              <div className="mt-2 text-sm text-gray-700">{s.desc}</div>
+            </div>
+          ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  return (
+    <section className="bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <h2 className="text-2xl font-bold text-gray-900">FAQ</h2>
+        <Accordion type="single" collapsible className="mt-6">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>What are payment terms?</AccordionTrigger>
+            <AccordionContent>50% to start, 50% on delivery for most projects. Larger builds can be milestone‑based.</AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Who owns the code?</AccordionTrigger>
+            <AccordionContent>You own 100% of the IP. Handoff includes repos, docs, and credentials.</AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>What happens after I submit the form?</AccordionTrigger>
+            <AccordionContent>We reply within 24 hours to confirm scope, timeline, and next steps. Kickoff typically 3–5 days from approval.</AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-4">
+            <AccordionTrigger>How long will my project take?</AccordionTrigger>
+            <AccordionContent>Depends on tier and scope. Starter sites are often 1–2 weeks; MVPs vary based on features.</AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );
@@ -152,7 +193,8 @@ export default function Landing() {
       <ExpandableFormSection />
       <Services />
       <Pricing />
-      <Inquiry />
+      <HowWeWork />
+      <FAQ />
     </main>
   );
 }

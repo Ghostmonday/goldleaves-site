@@ -5,8 +5,8 @@ export const site = {
     accent: "#BFA32F" // subtle gold
   },
   hero: {
-    headline: "Custom Software. Clean Execution.",
-    subtext: "Apps, dashboards, automations, and AI tools — shipped fast, built right.",
+    headline: "Independent full‑stack engineer shipping production‑ready software.",
+    subtext: "For founders, startups, and teams that need speed, clarity, and clean execution.",
     contactNote: "You can also email us directly at projects@goldleaves.cloud",
     ctaLabel: "Start a Project",
     ctaHref: "https://example.com/intake", // unused now; CTA handled inline
@@ -14,12 +14,12 @@ export const site = {
     secondaryCtaHref: "mailto:projects@goldleaves.cloud"
   },
   services: [
-    { icon: "Code2", title: "Full‑stack product development" },
-    { icon: "LayoutDashboard", title: "Dashboards & admin systems" },
-    { icon: "Cpu", title: "AI integrations & intelligent tooling" },
-    { icon: "CreditCard", title: "Subscriptions & payments" },
-    { icon: "CloudCog", title: "API‑first platforms" },
-    { icon: "Workflow", title: "Automations & workflows" }
+    { icon: "Code2", title: "Full‑stack product development — launch‑ready builds" },
+    { icon: "LayoutDashboard", title: "Secure, auditable dashboards built to scale" },
+    { icon: "Cpu", title: "AI integrations that enhance workflows, not complexity" },
+    { icon: "CreditCard", title: "Subscriptions & payments wired for growth" },
+    { icon: "CloudCog", title: "API‑first platforms with clean contracts" },
+    { icon: "Workflow", title: "Systems that reduce overhead, not add it" }
   ],
   pricing: [
     {
@@ -31,7 +31,8 @@ export const site = {
         "Basic contact form or calendar link",
         "1-year domain & lightweight hosting included"
       ],
-      cta: "Start this build"
+      cta: "Start this build",
+      highlight: false
     },
     {
       name: "Expand — Business Site",
@@ -66,7 +67,8 @@ export const site = {
         "User roles, session state, protected routes",
         "Deploy-ready with no external APIs"
       ],
-      cta: "Start this build"
+      cta: "Start this build",
+      highlight: false
     },
     {
       name: "Command — AI-Driven Platform",
@@ -77,7 +79,8 @@ export const site = {
         "Database, platform-managed APIs, messaging",
         "Deploy included (optional admin UI)"
       ],
-      cta: "Start this build"
+      cta: "Start this build",
+      highlight: false
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

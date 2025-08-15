@@ -3,7 +3,7 @@ export const site = {
     name: "GoldLeaves",
     email: "projects@goldleaves.cloud",
     accent: "#BFA32F", // subtle gold
-    github: "https://github.com/Ghostmonday/goldleaves-site" // live repo URL
+    github: "https://github.com/Ghostmonday/goldleaves-site"
   },
   hero: {
     headline: "Independent full‑stack engineer shipping production‑ready software.",
@@ -22,101 +22,37 @@ export const site = {
     { icon: "CloudCog", title: "API‑first platforms with clean contracts" },
     { icon: "Workflow", title: "Systems that reduce overhead, not add it" }
   ],
+  // Refactored 3-tier pricing to match provided visual reference
   pricing: [
     {
-      name: "Establish — Web Presence Starter",
-      price: "$750+",
-      features: [
-        "Custom-built site (single-page or multi-page)",
-        "Mobile-optimized design",
-        "Basic contact form or calendar link",
-        "1-year domain & lightweight hosting included"
-      ],
-      cta: "Start this build",
-      highlight: false,
-      timeline: "~1 week",
-      includes: [
-        "Custom landing page",
-        "Domain + hosting guidance",
-        "Contact form integration",
-        "Handoff with full ownership"
-      ]
+      plan: "Starter",
+      price: "$750",
+      tagline: "You’re launching a new product",
+      optionalLabel: "Optional",
+      options: ["Admin dashboard", "Payment integration"],
+      icon: "Rocket",
+      accent: "#BFA32F", // gold
+      tint: "#FFF6D9" // light gold tint
     },
     {
-      name: "Expand — Business Site Bundle",
-      price: "$1,500+",
-      features: [
-        "Multiple core views (Home, About, Contact, Services)",
-        "Responsive branding across pages",
-        "Optional integrations (video, maps, intake forms)",
-        "Early-stage SEO and mobile performance tuning"
-      ],
-      cta: "Start this build",
-      highlight: false,
-      timeline: "~1–2 weeks",
-      includes: [
-        "Multi-page responsive site",
-        "Simple admin dashboard or blog",
-        "DNS, SSL, and analytics",
-        "SEO setup and mobile polish"
-      ]
+      plan: "Growth",
+      price: "$2,500",
+      tagline: "You’re replacing spreadsheets with real software",
+      optionalLabel: "Optional",
+      options: ["User logins", "Team workflows"],
+      icon: "TrendingUp",
+      accent: "#2563EB", // refined blue
+      tint: "#EEF2FF" // soft indigo tint
     },
     {
-      name: "Operate — Production System (Recommended)",
-      price: "$3,000+",
-      features: [
-        "Custom backend (auth + content/admin panel)",
-        "Database & session management included",
-        "Email integration + basic dashboards",
-        "Secure deploy & performance monitoring"
-      ],
-      cta: "Start this build",
-      highlight: true,
-      timeline: "~2–3 weeks",
-      includes: [
-        "Full-stack web application",
-        "Custom API or backend logic",
-        "Auth, CRUD, DB setup",
-        "Documentation + code ownership"
-      ]
-    },
-    {
-      name: "Scale — Integrated SaaS or Client Portal",
-      price: "$5,000+",
-      features: [
-        "Lightweight SaaS-style application",
-        "Core business logic & workflows",
-        "User roles, session state, protected routes",
-        "Deploy-ready with no external APIs"
-      ],
-      cta: "Start this build",
-      highlight: false,
-      timeline: "~3–4 weeks",
-      includes: [
-        "Multi-user architecture",
-        "Payments, roles, notifications",
-        "AI integration or external APIs",
-        "Deployment + CI/CD pipeline"
-      ]
-    },
-    {
-      name: "Command — Fully Managed Infra",
-      price: "$8,500+",
-      features: [
-        "AI features: assistants, webhooks, pipelines",
-        "Authentication + authorization flows",
-        "Database, platform-managed APIs, messaging",
-        "Deploy included (optional admin UI)"
-      ],
-      cta: "Start this build",
-      highlight: false,
-      timeline: "~4–6 weeks",
-      includes: [
-        "Full SaaS product + internal tools",
-        "Admin panel, billing, security",
-        "Multi-env staging + analytics",
-        "Scaling + monitoring setup"
-      ]
+      plan: "Scale",
+      price: "$7,500+",
+      tagline: "You’re building a complex system or platform",
+      optionalLabel: "Optional",
+      options: ["APIs & integrations", "Advanced analytics", "Priority support"],
+      icon: "Database",
+      accent: "#6B7280", // neutral gray
+      tint: "#F3F4F6" // light gray tint
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

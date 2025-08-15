@@ -4,6 +4,7 @@ import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } fro
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+import PricingThree from "../components/PricingThree";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -80,102 +81,6 @@ function Services() {
   );
 }
 
-function TierCard({ tier }) {
-  const accent = site.brand.accent;
-  const { openForm } = useIntakeForm();
-  return (
-    <div className={`rounded-lg p-6 bg-white flex flex-col transition duration-200 transform hover:-translate-y-1 hover:shadow-lg ${tier.highlight ? "border-2" : "border"}`} style={{ borderColor: tier.highlight ? accent : "#E5E7EB", backgroundColor: tier.highlight ? "#fffdf3" : "#ffffff" }}>
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="text-base font-semibold text-gray-900">{tier.name}</div>
-          <div className="mt-1 text-3xl font-extrabold text-gray-900">{tier.price}</div>
-        </div>
-        {tier.highlight && (
-          <span className="text-xs font-semibold px-2 py-1 rounded-sm border" style={{ borderColor: accent, color: "#111", backgroundColor: "#fff" }}>Recommended</span>
-        )}
-      </div>
-      <ul className="mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside">
-        {tier.features.map((f) => (
-          <li key={f}>{f}</li>
-        ))}
-      </ul>
-
-      {/* Timeline + Includes */}
-      <div className="mt-5 border-t border-gray-200 pt-4">
-        {tier.timeline && (
-          <div className="text-xs font-medium text-gray-600">Timeline: <span className="text-gray-800">{tier.timeline}</span></div>
-        )}
-        {tier.includes && tier.includes.length > 0 && (
-          <div className="mt-2">
-            <div className="text-xs font-medium text-gray-600">Includes:</div>
-            <ul className="mt-1 list-disc list-inside text-sm text-gray-700 space-y-1">
-              {tier.includes.map((i) => (
-                <li key={i}>{i}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      <div className="mt-6">
-        <button onClick={() => openForm()} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md" style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}>{tier.cta}</button>
-      </div>
-    </div>
-  );
-}
-
-function Pricing() {
-  const top = site.pricing.slice(0, 3);
-  const bottom = site.pricing.slice(3);
-  return (
-    <section id="pricing" className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-bold text-gray-900">Pricing</h2>
-        <p className="mt-2 text-sm text-gray-600">{site.pricingFootnote}</p>
-
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {top.map((tier) => (
-            <TierCard key={tier.name} tier={tier} />
-          ))}
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {bottom.map((tier) => (
-            <TierCard key={tier.name} tier={tier} />
-          ))}
-        </div>
-
-        <div className="mt-6 text-sm text-gray-700">
-          <div>• Full IP ownership. No vendor lock‑in.</div>
-          <div>• Response within 24h. Kickoff in 3–5 days.</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HowWeWork() {
-  const steps = [
-    { title: "Scope", desc: "Focused discovery and clear deliverables." },
-    { title: "Build", desc: "Iterative development with tight feedback loops." },
-    { title: "Launch", desc: "Deployment, handoff, docs, and support." },
-  ];
-  return (
-    <section className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map((s) => (
-            <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white text-gray-900 transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
-              <div className="text-sm font-semibold text-gray-500">{s.title}</div>
-              <div className="mt-2 text-sm text-gray-700">{s.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function FAQ() {
   return (
     <section className="bg-white">
@@ -210,8 +115,7 @@ export default function Landing() {
       <Hero />
       <ExpandableFormSection />
       <Services />
-      <Pricing />
-      <HowWeWork />
+      <PricingThree />
       <FAQ />
     </main>
   );

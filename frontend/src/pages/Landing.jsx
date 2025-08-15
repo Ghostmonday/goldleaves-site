@@ -47,6 +47,7 @@ function Services() {
     <section id="services" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <h2 className="text-2xl font-bold text-gray-900">Services</h2>
+        <p className="mt-2 text-sm text-gray-600">Production‑ready software, delivered with full‑stack expertise.</p>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {site.services.map((s) => {
             const Icon = ICONS[s.icon] || Code2;
@@ -74,7 +75,7 @@ function Pricing() {
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <h2 className="text-2xl font-bold text-gray-900">Pricing</h2>
         <p className="mt-2 text-sm text-gray-600">{site.pricingFootnote}</p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {site.pricing.map((tier) => (
             <div key={tier.name} className="border border-gray-200 rounded-lg p-6 bg-white flex flex-col">
               <div className="text-sm text-gray-500">{tier.name}</div>
@@ -84,9 +85,9 @@ function Pricing() {
                   <li key={f}>{f}</li>
                 ))}
               </ul>
-              {tier.note && <div className="mt-4 text-xs text-gray-500">{tier.note}</div>}
+              {tier.note && tier.note.length > 0 && <div className="mt-4 text-xs text-gray-500">{tier.note}</div>}
               <div className="mt-6">
-                <button onClick={() => document.getElementById("top").scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>Start here</button>
+                <button onClick={() => document.getElementById("top").scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center w-full rounded-full px-4 py-2 text-sm font-semibold" style={{ backgroundColor: accent, color: "#111" }}>Request this tier</button>
               </div>
             </div>
           ))}

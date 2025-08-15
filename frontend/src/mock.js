@@ -8,23 +8,75 @@ export const site = {
     headline: "Custom Software. Clean Execution.",
     subtext: "Apps, dashboards, automations, and AI tools — shipped fast, built right.",
     ctaLabel: "Start a Project",
-    ctaHref: "https://example.com/intake", // temporary dummy link per your instruction
+    ctaHref: "https://example.com/intake", // unused now; CTA handled inline
     secondaryCtaLabel: "Email us",
     secondaryCtaHref: "mailto:projects@goldleaves.cloud"
   },
   services: [
-    { icon: "Code2", title: "Full‑stack web development" },
-    { icon: "LayoutDashboard", title: "User dashboards & admin panels" },
-    { icon: "Cpu", title: "AI tool integrations" },
-    { icon: "CreditCard", title: "Stripe payments" },
-    { icon: "CloudCog", title: "API‑driven apps" },
-    { icon: "Workflow", title: "Automations" }
+    { icon: "Code2", title: "Full‑stack product development" },
+    { icon: "LayoutDashboard", title: "Dashboards & admin systems" },
+    { icon: "Cpu", title: "AI integrations & intelligent tooling" },
+    { icon: "CreditCard", title: "Subscriptions & payments" },
+    { icon: "CloudCog", title: "API‑first platforms" },
+    { icon: "Workflow", title: "Automations & workflows" }
   ],
   pricing: [
-    { name: "Starter", price: "$500+", features: ["Landing pages, minor fixes, small scripts"], note: "Great for quick wins" },
-    { name: "Standard", price: "$1500+", features: ["MVP features, dashboards, integrations"], note: "Balanced scope" },
-    { name: "Full Build", price: "$3000+", features: ["End-to-end build, auth, payments, deploy"], note: "Most comprehensive" }
+    {
+      name: "Web Presence Starter",
+      price: "$750+",
+      features: [
+        "Beautiful, fast‑loading single‑page website",
+        "Custom domain (client‑provided or procured at added cost)",
+        "Mobile‑responsive design",
+        "Deployed and delivered with live hosting"
+      ],
+      note: ""
+    },
+    {
+      name: "Business Site",
+      price: "$1,500+",
+      features: [
+        "Multi‑page website (Home, About, Contact, Services)",
+        "Custom contact form",
+        "Basic branding integration (colors, logo, copy editing)",
+        "Analytics + performance‑optimized"
+      ],
+      note: ""
+    },
+    {
+      name: "Full‑Stack Site with Admin",
+      price: "$3,000+",
+      features: [
+        "Includes client dashboard (admin panel)",
+        "CMS or basic content‑editing tools",
+        "User auth, database integration, cloud‑hosted backend",
+        "Deployed to scalable environment"
+      ],
+      note: ""
+    },
+    {
+      name: "Web App MVP",
+      price: "$5,000+",
+      features: [
+        "Lightweight SaaS‑style application",
+        "Core features fully functional (no external APIs)",
+        "Includes mobile‑friendly frontend and backend",
+        "Built with scalability in mind"
+      ],
+      note: ""
+    },
+    {
+      name: "Full SaaS or API‑Driven Platform",
+      price: "$8,500+",
+      features: [
+        "Full‑stack platform with external API integrations",
+        "Payments, user roles, notifications, etc.",
+        "Deployment‑ready, client retains full IP rights",
+        "Professional code quality, built to scale"
+      ],
+      note: ""
+    }
   ],
-  pricingFootnote: "Pricing is project-based. These are just common starting points.",
+  pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",
   dummyNotice: "This page uses mock data only. The intake link is a placeholder."
 };

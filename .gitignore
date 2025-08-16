@@ -23,3 +23,6 @@ yarn-error.log*
 
 # Misc
 *.local
+
+# CI helper files not needed in repo history
+/test_result.md

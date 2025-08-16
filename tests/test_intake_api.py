@@ -1,7 +1,13 @@
+import sys, os
 from fastapi.testclient import TestClient
 import types
 import pytest
-from backend import server as srv
+
+# Ensure repo root and backend module are importable in CI
+sys.path.insert(0, os.path.abspath("."))
+sys.path.insert(0, os.path.abspath("backend"))
+
+from backend import server as srv  # noqa: E402
 
 
 class _FakeCursor:

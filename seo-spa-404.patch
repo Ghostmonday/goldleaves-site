@@ -1,0 +1,70 @@
+From 1d2c3b4a5e6f7890abcd1234567890abcdef1234 Mon Sep 17 00:00:00 2001
+From: GoldLeaves Bot <bot@goldleaves.cloud>
+Date: Sat, 16 Aug 2025 01:30:00 +0000
+Subject: [PATCH] seo: add SPA-safe 404 and canonical/robots tags
+
+---
+ frontend/public/404.html | 33 ++++++++++++++++++++++++++++++++
+ frontend/public/index.html | 10 ++++++++++
+ 2 files changed, 43 insertions(+)
+ create mode 100644 frontend/public/404.html
+
+ diff --git a/frontend/public/404.html b/frontend/public/404.html
+ new file mode 100644
+ index 0000000..1111111
+ --- /dev/null
+ +++ b/frontend/public/404.html
+ @@ -0,0 +1,33 @@
+ +<!doctype html>
+ +<html lang="en">
+ +  <head>
+ +    <meta charset="utf-8" />
+ +    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ +    <meta name="robots" content="index,follow" />
+ +    <title>Loading…</title>
+ +    <style>
+ +      html, body { height: 100%; }
+ +      body { display: grid; place-items: center; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+ +      .wrap { text-align: center; color: #111; }
+ +    </style>
+ +    <script>
+ +      (function() {
+ +        var l = window.location;
+ +        if (l.pathname === "/" || l.pathname === "/index.html") return;
+ +        sessionStorage.setItem("spa:path", l.pathname + l.search + l.hash);
+ +        l.replace("/index.html");
+ +      })();
+ +    </script>
+ +  </head>
+ +  <body>
+ +    <div class="wrap">
+ +      <div>Redirecting…</div>
+ +    </div>
+ +  </body>
+ +</html>
+ diff --git a/frontend/public/index.html b/frontend/public/index.html
+ index abcdef1..2222222 100644
+ --- a/frontend/public/index.html
+ +++ b/frontend/public/index.html
+ @@ -6,6 +6,8 @@
+      <meta name="theme-color" content="#ffffff" />
+      <meta name="description" content="GoldLeaves — Independent full‑stack engineer shipping production‑ready software." />
+ +    <link rel="canonical" href="https://www.goldleaves.cloud/" />
+ +    <meta name="robots" content="index,follow" />
+      <title>GoldLeaves — Independent Full‑Stack Engineer</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ @@ -26,6 +28,14 @@
+        "email": "projects@goldleaves.cloud"
+      }
+      </script>
+ +    <script>
+ +      // Recover SPA deep link if redirected from 404.html
+ +      (function(){
+ +        var saved = sessionStorage.getItem("spa:path");
+ +        if (saved) {
+ +          sessionStorage.removeItem("spa:path");
+ +          if (!location.pathname || location.pathname === "/" || /index\.html$/.test(location.pathname)) history.replaceState(null, "", saved);
+ +        }
+ +      })();
+ +    </script>

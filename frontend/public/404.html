@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <title>Loading…</title>
+    <style>
+      html, body { height: 100%; }
+      body { display: grid; place-items: center; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+      .wrap { text-align: center; color: #111; }
+    </style>
+    <script>
+      (function() {
+        // GitHub Pages SPA redirect: preserve path and query by writing into index route
+        var l = window.location;
+        // If already at the root, nothing to do
+        if (l.pathname === "/" || l.pathname === "/index.html") return;
+        // Store the original path so the SPA router can recover it if needed
+        sessionStorage.setItem("spa:path", l.pathname + l.search + l.hash);
+        // Redirect to root to let the SPA handle routing
+        l.replace("/index.html");
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div>Redirecting…</div>
+    </div>
+  </body>
+</html>

@@ -6,15 +6,18 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { IntakeFormProvider } from "./context/IntakeFormContext";
 import { Toaster } from "./components/ui/toaster";
+import ThemeProvider from "./context/ThemeProvider";
 
 function AppShell({ children }) {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <Header />
-      {children}
-      <Footer />
-      <Toaster />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-white text-gray-900">
+        <Header />
+        {children}
+        <Footer />
+        <Toaster />
+      </div>
+    </ThemeProvider>
   );
 }
 

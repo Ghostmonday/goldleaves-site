@@ -5,6 +5,9 @@ import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import PricingThree from "../components/PricingThree";
+import CaseStudies from "../components/CaseStudies";
+import LeafLogo from "../components/LeafLogo";
+import CtaButton from "../components/CtaButton";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -13,28 +16,16 @@ function Hero() {
   const { openForm } = useIntakeForm();
   return (
     <section id="top" className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
-            {site.hero.headline}
+      <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-16">
+        <div className="flex flex-col items-center text-center">
+          <LeafLogo size={64} color={accent} />
+          <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            Build fast. Launch smart. No fluff.
           </h1>
-          <p className="mt-5 text-lg text-gray-700">
-            {site.hero.subtext}
-          </p>
+          <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => openForm()}
-              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md"
-              style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}
-            >
-              {site.hero.ctaLabel}
-            </button>
-            <a
-              href={site.hero.secondaryCtaHref}
-              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900"
-            >
-              <Mail size={18} className="mr-2" /> {site.hero.secondaryCtaLabel}
-            </a>
+            <CtaButton onClick={() => openForm()}>Start a Project</CtaButton>
+            <a href="#work" className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">See what we’ve built</a>
           </div>
           <p className="mt-4 text-sm text-gray-700">
             {site.hero.contactNote.split("projects@goldleaves.cloud")[0]}
@@ -45,7 +36,7 @@ function Hero() {
 
         {/* Trusted by row */}
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 text-gray-500 text-sm">
-          {["ACME", "Northwind", "Globex", "Umbrella", "Soylent"].map((brand) => (
+          {["ureport", "GitHub", "Notion", "Stripe", "GSuite"].map((brand) => (
             <div key={brand} className="border border-gray-200 rounded-md py-3 px-4 text-center bg-white/70">{brand}</div>
           ))}
         </div>
@@ -56,11 +47,18 @@ function Hero() {
 
 function Services() {
   const accent = site.brand.accent;
+  const DESCS = {
+    Code2: "Full‑stack products that ship and scale.",
+    LayoutDashboard: "Secure admin tools clients actually use.",
+    Cpu: "Useful AI — assistants, workflows, not buzzwords.",
+    CreditCard: "Subscriptions and payments wired for growth.",
+    CloudCog: "Clear, well‑documented APIs for teams.",
+    Workflow: "Automations that reduce overhead, not add it.",
+  };
   return (
     <section id="services" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <h2 className="text-2xl font-bold text-gray-900">Services</h2>
-        <p className="mt-2 text-sm text-gray-600">Production‑ready software, delivered with full‑stack expertise.</p>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {site.services.map((s) => {
             const Icon = ICONS[s.icon] || Code2;
@@ -70,7 +68,10 @@ function Services() {
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
                     <Icon size={18} color={accent} />
                   </span>
-                  <div className="font-medium text-gray-900">{s.title}</div>
+                  <div>
+                    <div className="font-medium text-gray-900">{s.title}</div>
+                    <p className="text-sm text-gray-600 mt-1">{DESCS[s.icon] || "Production‑ready, maintainable software."}</p>
+                  </div>
                 </div>
               </div>
             );
@@ -114,6 +115,7 @@ export default function Landing() {
     <main>
       <Hero />
       <ExpandableFormSection />
+      <CaseStudies />
       <Services />
       <PricingThree />
       <FAQ />

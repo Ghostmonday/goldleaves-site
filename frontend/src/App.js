@@ -9,6 +9,8 @@ import { Toaster } from "./components/ui/toaster";
 import ThemeProvider from "./context/ThemeProvider";
 import { PricingProvider } from "./context/PricingContext";
 import CopyrightBadge from "./components/CopyrightBadge";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 function AppShell({ children }) {
   return (
@@ -30,14 +32,9 @@ function App() {
       <PricingProvider>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <AppShell>
-                  <Landing />
-                </AppShell>
-              }
-            />
+            <Route path="/" element={<AppShell><Landing /></AppShell>} />
+            <Route path="/privacy-policy" element={<AppShell><Privacy /></AppShell>} />
+            <Route path="/terms-of-service" element={<AppShell><Terms /></AppShell>} />
           </Routes>
         </BrowserRouter>
       </PricingProvider>

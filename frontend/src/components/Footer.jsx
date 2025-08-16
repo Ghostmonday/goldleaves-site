@@ -14,9 +14,9 @@ export default function Footer() {
         <div className="space-y-1">
           <a href={`mailto:${site.brand.email}`} className="hover:text-gray-900 dark:hover:text-[hsl(var(--foreground))]">{site.brand.email}</a>
           <div className="flex items-center gap-3 text-xs">
-            <a href="#" className="hover:text-gray-900 dark:hover:text-[hsl(var(--foreground))]">Privacy</a>
+            <a href="/privacy-policy" className="hover:text-gray-900 dark:hover:text-[hsl(var(--foreground))]">Privacy</a>
             <span>•</span>
-            <a href="#" className="hover:text-gray-900 dark:hover:text-[hsl(var(--foreground))]">Terms</a>
+            <a href="/terms-of-service" className="hover:text-gray-900 dark:hover:text-[hsl(var(--foreground))]">Terms</a>
           </div>
         </div>
         <div className="flex items-center gap-4">

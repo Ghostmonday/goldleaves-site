@@ -1,0 +1,7 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["frontend", "build", "dist", "node_modules"]
+lint.select = ["E", "F", "I", "UP"]
+lint.ignore = ["E501"]
+fix = true

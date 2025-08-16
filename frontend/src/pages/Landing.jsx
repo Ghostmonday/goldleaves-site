@@ -32,12 +32,9 @@ function Hero() {
             Code that works. Support that sticks.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a
-              onClick={() => openForm()}
-              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold cursor-pointer"
-            >
+            <CtaButton as="a" onClick={() => openForm()}>
               Start a Project
-            </a>
+            </CtaButton>
             <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-[hsl(var(--border))] text-gray-900">
               View pricing
             </button>

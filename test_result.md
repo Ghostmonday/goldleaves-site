@@ -101,3 +101,49 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Wire the intake form to a FastAPI + MongoDB backend with simple POST/GET endpoints and integrate with the React frontend."
+
+backend:
+  - task: "Create Intake endpoints (POST /api/intakes, GET /api/intakes)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Implemented Pydantic models IntakeCreate/IntakeOut, Mongo persistence, validation (agree must be true), list with limit."
+
+frontend:
+  - task: "Wire ExpandableFormSection to backend POST"
+    implemented: true
+    working: NA
+    file: "/app/frontend/src/components/ExpandableFormSection.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Replaced mock submit with axios POST to `${REACT_APP_BACKEND_URL}/api/intakes`. Success toast + thanks state; failure toast."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Backend: Validate POST /api/intakes happy path and validation errors"
+    - "Backend: Validate GET /api/intakes returns created record"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Please test backend endpoints first per plan. Frontend integration depends on backend working; we will run UI tests after backend passes."

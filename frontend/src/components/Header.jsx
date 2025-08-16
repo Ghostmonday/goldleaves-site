@@ -4,10 +4,22 @@ import { useIntakeForm } from "../context/IntakeFormContext";
 import ThemeToggle from "./ThemeToggle";
 import LeafLogo from "./LeafLogo";
 import CtaButton from "./CtaButton";
+import { usePricing } from "../context/PricingContext";
 
 export default function Header() {
   const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
+  const { openPricing } = usePricing();
+
+  const handlePricingClick = (e) => {
+    e.preventDefault();
+    openPricing();
+    // smooth scroll to pricing block
+    setTimeout(() => {
+      const el = document.getElementById("pricing-block");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
 
   return (
     <header className="w-full border-b border-gray-200 bg-white/90 backdrop-blur sticky top-0 z-40">
@@ -18,7 +30,7 @@ export default function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <a href="#services" className="text-gray-700 hover:text-gray-900">Services</a>
-          <a href="#pricing" className="text-gray-700 hover:text-gray-900">Pricing</a>
+          <a href="#pricing" onClick={handlePricingClick} className="text-gray-700 hover:text-gray-900">Pricing</a>
           <a href="#work" className="text-gray-700 hover:text-gray-900">Work</a>
           <a href="#contact" className="text-gray-700 hover:text-gray-900">Contact</a>
         </nav>

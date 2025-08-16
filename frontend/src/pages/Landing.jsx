@@ -4,17 +4,19 @@ import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } fro
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import PricingThree from "../components/PricingThree";
 import CaseStudies from "../components/CaseStudies";
 import LeafLogo from "../components/LeafLogo";
 import CtaButton from "../components/CtaButton";
 import ResultPills from "../components/ResultPills";
+import PricingReveal from "../components/PricingReveal";
+import { usePricing } from "../context/PricingContext";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
 function Hero() {
   const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
+  const { openPricing } = usePricing();
   return (
     <section id="top" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-16">
@@ -26,7 +28,7 @@ function Hero() {
           <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <CtaButton onClick={() => openForm()}>Start a Project</CtaButton>
-            <a href="#work" className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">See what we’ve built</a>
+            <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">View pricing</button>
           </div>
           <p className="mt-4 text-sm text-gray-700">
             {site.hero.contactNote.split("projects@goldleaves.cloud")[0]}
@@ -35,8 +37,36 @@ function Hero() {
           </p>
         </div>
 
-        {/* Result Pills section replaces tool badges */}
         <ResultPills />
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const accent = site.brand.accent;
+  return (
+    <section id="services" className="bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <h2 className="text-2xl font-bold text-gray-900">Services</h2>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {site.services.map((s) => {
+            const Icon = ICONS[s.icon] || Code2;
+            return (
+              <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
+                    <Icon size={18} color={accent} />
+                  </span>
+                  <div>
+                    <div className="font-medium text-gray-900">{s.title}</div>
+                    <p className="text-sm text-gray-600 mt-1">Production‑ready, maintainable software.</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -76,7 +106,7 @@ export default function Landing() {
       <Hero />
       <ExpandableFormSection />
       <CaseStudies />
-      <PricingThree />
+      <PricingReveal />
       <FAQ />
     </main>
   );

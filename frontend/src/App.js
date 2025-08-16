@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { IntakeFormProvider } from "./context/IntakeFormContext";
 import { Toaster } from "./components/ui/toaster";
 import ThemeProvider from "./context/ThemeProvider";
+import { PricingProvider } from "./context/PricingContext";
 
 function AppShell({ children }) {
   return (
@@ -24,18 +25,20 @@ function AppShell({ children }) {
 function App() {
   return (
     <IntakeFormProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <AppShell>
-                <Landing />
-              </AppShell>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <PricingProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <AppShell>
+                  <Landing />
+                </AppShell>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </PricingProvider>
     </IntakeFormProvider>
   );
 }

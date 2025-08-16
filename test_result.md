@@ -141,8 +141,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Backend: Validate POST /api/intakes happy path and validation errors"
-    - "Backend: Validate GET /api/intakes returns created record"
+    - "Frontend: Test ExpandableFormSection integration with backend"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"

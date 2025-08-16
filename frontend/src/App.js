@@ -8,15 +8,17 @@ import { IntakeFormProvider } from "./context/IntakeFormContext";
 import { Toaster } from "./components/ui/toaster";
 import ThemeProvider from "./context/ThemeProvider";
 import { PricingProvider } from "./context/PricingContext";
+import CopyrightBadge from "./components/CopyrightBadge";
 
 function AppShell({ children }) {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen bg-white text-gray-900 dark:bg-[hsl(var(--background))] dark:text-[hsl(var(--foreground))]">
         <Header />
         {children}
         <Footer />
         <Toaster />
+        <CopyrightBadge />
       </div>
     </ThemeProvider>
   );

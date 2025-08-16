@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any
 
 # Backend URL from frontend environment
-BACKEND_URL = "https://0cc49cbd-9296-4170-b861-1cbc2580bb90.preview.emergentagent.com"
+BACKEND_URL = "https://goldleaves-agency.preview.emergentagent.com"
 API_BASE = f"{BACKEND_URL}/api"
 
 class BackendTester:

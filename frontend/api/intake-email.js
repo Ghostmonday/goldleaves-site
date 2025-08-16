@@ -1,8 +1,8 @@
-import { Resend } from 'resend';
+const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -60,7 +60,7 @@ export default async function handler(req, res) {
     console.error('Handler error:', err);
     return res.status(500).json({ ok: false, error: 'Server error' });
   }
-}
+};
 
 function escapeHtml(str = '') {
   return String(str)

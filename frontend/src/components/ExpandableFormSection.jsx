@@ -12,7 +12,6 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from ".
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 
 const formSchema = z.object({
   name: z.string().min(2, "Full name is required"),
@@ -21,6 +20,7 @@ const formSchema = z.object({
   budget: z.string().min(1, "Select a budget"),
   description: z.string().min(10, "Please describe your project"),
   agree: z.literal(true, { errorMap: () => ({ message: "Please acknowledge the engagement" }) }),
+  company_name: z.string().optional(), // honeypot
 });
 
 const PROJECT_TYPES = [
@@ -47,7 +47,7 @@ export default function ExpandableFormSection() {
     watch,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm({ resolver: zodResolver(formSchema), defaultValues: { name: "", email: "", projectType: "", budget: "", description: "", agree: false } });
+  } = useForm({ resolver: zodResolver(formSchema), defaultValues: { name: "", email: "", projectType: "", budget: "", description: "", agree: false, company_name: "" } });
 
   const projectTypeVal = watch("projectType");
   const budgetVal = watch("budget");
@@ -59,23 +59,26 @@ export default function ExpandableFormSection() {
   }, [open]);
 
   const onSubmit = async (data) => {
-    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-    const url = `${BACKEND_URL}/api/intakes`;
     try {
-      const res = await axios.post(url, {
-        name: data.name,
-        email: data.email,
-        project_type: data.projectType,
-        budget: data.budget,
-        description: data.description,
-        agree: true,
-        source: "web",
+      const resp = await fetch('/api/intake-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          projectType: data.projectType,
+          budget: data.budget,
+          description: data.description,
+          company_name: data.company_name || "",
+        })
       });
-      toast({ title: "Request received", description: "Thanks — we'll reply within 24 hours at " + res.data.email });
+      const json = await resp.json();
+      if (!resp.ok || !json.ok) throw new Error(json.error || 'Failed');
+      toast({ title: "Request received", description: "Thanks — we'll reply within 24 hours at " + data.email });
       setSubmitted(true);
       reset();
     } catch (e) {
-      console.error("Intake submit failed", e);
+      console.error('Email submit failed', e);
       toast({ title: "Submission failed", description: "Please try again or email projects@goldleaves.cloud" });
     }
   };
@@ -99,6 +102,8 @@ export default function ExpandableFormSection() {
                   </div>
 
                   <form className="mt-6 space-y-5" onSubmit={handleSubmit(onSubmit)}>
+                    <input type="text" aria-hidden name="company_name" tabIndex="-1" autoComplete="off" style={{ display: 'none' }} {...register('company_name')} />
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <Label htmlFor="name">Full Name</Label>

@@ -14,7 +14,6 @@ export default function Header() {
   const handlePricingClick = (e) => {
     e.preventDefault();
     openPricing();
-    // smooth scroll to pricing block
     setTimeout(() => {
       const el = document.getElementById("pricing-block");
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -31,7 +30,6 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <a href="#services" className="text-gray-700 hover:text-gray-900">Services</a>
           <a href="#pricing" onClick={handlePricingClick} className="text-gray-700 hover:text-gray-900">Pricing</a>
-          <a href="#work" className="text-gray-700 hover:text-gray-900">Work</a>
           <a href="#contact" className="text-gray-700 hover:text-gray-900">Contact</a>
         </nav>
         <div className="flex items-center gap-3">

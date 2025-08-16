@@ -4,7 +4,6 @@ import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } fro
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
-import CaseStudies from "../components/CaseStudies";
 import LeafLogo from "../components/LeafLogo";
 import CtaButton from "../components/CtaButton";
 import ResultPills from "../components/ResultPills";
@@ -105,7 +104,6 @@ export default function Landing() {
     <main>
       <Hero />
       <ExpandableFormSection />
-      <CaseStudies />
       <PricingReveal />
       <FAQ />
     </main>

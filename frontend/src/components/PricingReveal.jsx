@@ -14,7 +14,7 @@ export default function PricingReveal() {
   }, [open]);
 
   return (
-    <section id="pricing-block" className="bg-white">
+    <section id="pricing-block" className="bg-white scroll-mt-24">
       <div className="max-w-6xl mx-auto px-6">
         <Collapsible open={open}>
           <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">

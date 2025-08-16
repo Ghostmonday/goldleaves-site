@@ -6,6 +6,11 @@ import LeafLogo from "./LeafLogo";
 import CtaButton from "./CtaButton";
 import { usePricing } from "../context/PricingContext";
 
+function smoothScrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Header() {
   const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
@@ -14,10 +19,7 @@ export default function Header() {
   const handlePricingClick = (e) => {
     e.preventDefault();
     openPricing();
-    setTimeout(() => {
-      const el = document.getElementById("pricing-block");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
+    setTimeout(() => smoothScrollTo("pricing-block"), 60);
   };
 
   return (
@@ -28,9 +30,9 @@ export default function Header() {
           <span className="text-xl font-semibold tracking-tight text-gray-900">{site.brand.name}</span>
         </a>
         <nav className="hidden md:flex items-center gap-6 text-sm">
-          <a href="#services" className="text-gray-700 hover:text-gray-900">Services</a>
-          <a href="#pricing" onClick={handlePricingClick} className="text-gray-700 hover:text-gray-900">Pricing</a>
-          <a href="#contact" className="text-gray-700 hover:text-gray-900">Contact</a>
+          <a href="#services" onClick={(e) => { e.preventDefault(); smoothScrollTo("services"); }} className="text-gray-700 hover:text-gray-900">Services</a>
+          <a href="#pricing-block" onClick={handlePricingClick} className="text-gray-700 hover:text-gray-900">Pricing</a>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); smoothScrollTo("contact"); }} className="text-gray-700 hover:text-gray-900">Contact</a>
         </nav>
         <div className="flex items-center gap-3">
           <ThemeToggle />

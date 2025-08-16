@@ -9,6 +9,7 @@ import CtaButton from "../components/CtaButton";
 import ResultPills from "../components/ResultPills";
 import PricingReveal from "../components/PricingReveal";
 import { usePricing } from "../context/PricingContext";
+import ContactSection from "../components/ContactSection";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -45,7 +46,7 @@ function Hero() {
 function Services() {
   const accent = site.brand.accent;
   return (
-    <section id="services" className="bg-white">
+    <section id="services" className="bg-white scroll-mt-24">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <h2 className="text-2xl font-bold text-gray-900">Services</h2>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -104,7 +105,9 @@ export default function Landing() {
     <main>
       <Hero />
       <ExpandableFormSection />
+      <Services />
       <PricingReveal />
+      <ContactSection />
       <FAQ />
     </main>
   );

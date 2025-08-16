@@ -1,0 +1,131 @@
+From 4b2aef0dd9632d887597163b345e6cd8b9dd22bf Mon Sep 17 00:00:00 2001
+From: emergent-agent-e1 <github@emergent.sh>
+Date: Sat, 16 Aug 2025 01:02:49 +0000
+Subject: [PATCH] auto-commit for 5e3861b4-f652-4ab0-8ee9-730cfd03ca44
+
+---
+ mypy.ini                 |  5 +++
+ pyproject.toml           |  7 ++++
+ tests/test_intake_api.py | 81 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 93 insertions(+)
+ create mode 100644 mypy.ini
+ create mode 100644 pyproject.toml
+ create mode 100644 tests/test_intake_api.py
+
+diff --git a/mypy.ini b/mypy.ini
+new file mode 100644
+index 0000000..cd886e4
+--- /dev/null
++++ b/mypy.ini
+@@ -0,0 +1,5 @@
++[mypy]
++python_version = 3.12
++ignore_missing_imports = True
++disallow_untyped_defs = False
++exclude = (frontend|node_modules|build|dist|tests)
+\ No newline at end of file
+diff --git a/pyproject.toml b/pyproject.toml
+new file mode 100644
+index 0000000..bf465fb
+--- /dev/null
++++ b/pyproject.toml
+@@ -0,0 +1,7 @@
++[tool.ruff]
++line-length = 100
++target-version = "py312"
++extend-exclude = ["frontend", "build", "dist", "node_modules"]
++lint.select = ["E", "F", "I", "UP"]
++lint.ignore = ["E501"]
++fix = true
+\ No newline at end of file
+diff --git a/tests/test_intake_api.py b/tests/test_intake_api.py
+new file mode 100644
+index 0000000..a0ff3ae
+--- /dev/null
++++ b/tests/test_intake_api.py
+@@ -0,0 +1,81 @@
++from fastapi.testclient import TestClient
++import types
++import pytest
++from backend import server as srv
++
++
++class _FakeCursor:
++    def __init__(self, items):
++        self.items = items
++
++    def sort(self, field, order):
++        self.items = sorted(self.items, key=lambda x: x.get(field), reverse=bool(order == -1))
++        return self
++
++    async def to_list(self, limit):
++        return self.items[:limit]
++
++
++class _FakeCollection:
++    def __init__(self):
++        self.items = []
++
++    async def insert_one(self, item):
++        self.items.append(item)
++        return types.SimpleNamespace(inserted_id=item.get("id"))
++
++    def find(self):
++        return _FakeCursor(list(self.items))
++
++
++@pytest.fixture(autouse=True)
++def fake_db(monkeypatch):
++    fake = types.SimpleNamespace(
++        intakes=_FakeCollection(),
++        status_checks=_FakeCollection(),
++    )
++    monkeypatch.setattr(srv, "db", fake)
++    yield
++
++
++client = TestClient(srv.app)
++
++
++def test_health():
++    r = client.get("/api/")
++    assert r.status_code == 200
++    assert r.json().get("message") == "Hello World"
++
++
++def test_create_and_list_intake():
++    payload = {
++        "name": "Jane Doe",
++        "email": "jane@example.com",
++        "project_type": "Full‑stack web app",
++        "budget": "$1k–3k",
++        "description": "Build a dashboard.",
++        "agree": True,
++        "source": "test",
++    }
++    r = client.post("/api/intakes", json=payload)
++    assert r.status_code == 201, r.text
++    data = r.json()
++    assert all(k in data for k in ["id", "created_at", "email", "project_type"])
++
++    r2 = client.get("/api/intakes")
++    assert r2.status_code == 200
++    items = r2.json()
++    assert any(it["id"] == data["id"] for it in items)
++
++
++def test_reject_agree_false():
++    payload = {
++        "name": "John",
++        "email": "john@example.com",
++        "project_type": "API app",
++        "budget": "$3k–6k",
++        "description": "Something",
++        "agree": False,
++    }
++    r = client.post("/api/intakes", json=payload)
++    assert r.status_code == 400
+\ No newline at end of file
+-- 
+2.39.5
+

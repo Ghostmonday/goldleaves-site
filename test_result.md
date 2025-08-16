@@ -107,15 +107,18 @@ user_problem_statement: "Wire the intake form to a FastAPI + MongoDB backend wit
 backend:
   - task: "Create Intake endpoints (POST /api/intakes, GET /api/intakes)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Implemented Pydantic models IntakeCreate/IntakeOut, Mongo persistence, validation (agree must be true), list with limit."
+      - working: true
+        agent: "testing"
+        comment: "✅ All backend tests passed: 1) Health check GET /api/ returns correct message, 2) POST /api/intakes with valid payload returns 201 with id/created_at and echoes all fields, 3) POST /api/intakes with agree=false correctly returns 400 with validation error, 4) GET /api/intakes successfully returns created records. Additional validation tests confirm proper 422 responses for missing fields and invalid email formats. Backend is fully functional."
 
 frontend:
   - task: "Wire ExpandableFormSection to backend POST"

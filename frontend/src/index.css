@@ -15,19 +15,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
-}
+code { font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace; }
 
 @layer base {
   :root {
+        /* Light palette (still present, but primary experience is dark) */
         --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
+        --foreground: 0 0% 5%;
         --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
+        --card-foreground: 0 0% 7%;
         --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
+        --popover-foreground: 0 0% 7%;
         --primary: 0 0% 9%;
         --primary-foreground: 0 0% 98%;
         --secondary: 0 0% 96.1%;
@@ -41,38 +39,36 @@ code {
         --border: 0 0% 89.8%;
         --input: 0 0% 89.8%;
         --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
         --radius: 0.5rem;
+
+        /* Premium golds */
+        --gold-300: 46 55% 70%; /* champagne */
+        --gold-400: 45 55% 60%;
+        --gold-500: 45 60% 50%; /* brand */
+        --gold-600: 39 60% 40%;
+        --gold-700: 35 65% 34%;
     }
   .dark {
-        --background: 215 30% 7%;          /* deep blue-gray */
-        --foreground: 220 18% 95%;          /* near white */
-        --card: 215 25% 10%;               /* surface */
-        --card-foreground: 220 18% 95%;
-        --popover: 215 25% 10%;
-        --popover-foreground: 220 18% 95%;
-        --primary: 220 15% 92%;
-        --primary-foreground: 215 30% 10%;
-        --secondary: 215 23% 14%;
-        --secondary-foreground: 220 18% 95%;
-        --muted: 215 22% 14%;
-        --muted-foreground: 215 12% 65%;
-        --accent: 215 23% 14%;
-        --accent-foreground: 220 18% 95%;
+        /* Deep charcoal, rich contrast */
+        --background: 220 27% 7%;         /* page */
+        --foreground: 220 18% 96%;        /* near white */
+        --card: 220 20% 10%;              /* cards/surfaces */
+        --card-foreground: 220 18% 96%;
+        --popover: 220 20% 10%;
+        --popover-foreground: 220 18% 96%;
+        --primary: 220 16% 94%;
+        --primary-foreground: 220 20% 12%;
+        --secondary: 220 18% 14%;
+        --secondary-foreground: 220 18% 96%;
+        --muted: 220 14% 18%;
+        --muted-foreground: 220 12% 68%;
+        --accent: 220 18% 14%;
+        --accent-foreground: 220 18% 96%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 215 22% 22%;
-        --input: 215 22% 22%;
-        --ring: 215 20% 40%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+        --border: 220 16% 22%;
+        --input: 220 16% 22%;
+        --ring: 45 60% 50%;               /* use brand gold for rings */
     }
 }
 
@@ -88,4 +84,15 @@ code {
   .dark .text-gray-700 { color: hsl(var(--muted-foreground)) !important; }
   .dark .border-gray-200 { border-color: hsl(var(--border)) !important; }
   .dark .hover\:bg-gray-50:hover { background-color: hsl(var(--secondary)) !important; }
+}
+
+/* Premium UI utilities */
+@layer utilities {
+  .gold-gradient { background: linear-gradient(98deg, hsl(var(--gold-500)) 0%, hsl(var(--gold-400)) 45%, hsl(var(--gold-600)) 100%); }
+  .gold-stroke { border-color: hsl(var(--gold-600)); }
+  .gold-ring { box-shadow: 0 0 0 2px rgba(0,0,0,0), 0 0 0 4px hsla(var(--gold-500), 0.25); }
+  .card-premium { @apply bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_10px_30px_rgba(0,0,0,0.35)]; }
+  .card-hover:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 14px 42px rgba(0,0,0,0.45); transform: translateY(-2px); transition: all .2s ease; }
+  .accent-underline { position: relative; display: inline-block; padding-bottom: 6px; }
+  .accent-underline::after { content: ""; position: absolute; left: 0; bottom: 0; width: 56px; height: 2px; background: linear-gradient(90deg, hsl(var(--gold-600)), hsl(var(--gold-400))); border-radius: 2px; }
 }

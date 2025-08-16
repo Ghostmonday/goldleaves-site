@@ -13,52 +13,73 @@ import GoldLogo from "../components/GoldLogo";
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
 function Hero() {
-  const accent = site.brand.accent;
   const { openForm } = useIntakeForm();
   const { openPricing } = usePricing();
   return (
     <section id="top" className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-16">
-        <div className="flex flex-col items-center text-center">
-          <GoldLogo size={64} />
-          <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+      <div className="max-w-6xl mx-auto px-6 pt-20 pb-12 md:pt-28 md:pb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        {/* Asymmetric layout: logo + heading left, actions right on md+ */}
+        <div className="md:col-span-7">
+          <div className="flex items-center gap-3">
+            <GoldLogo size={56} />
+            <span className="sr-only">GoldLeaves</span>
+          </div>
+          <h1 className="mt-6 text-[40px] md:text-[56px] leading-[1.06] font-extrabold tracking-tight text-gray-900">
             Build fast. Launch smart.
           </h1>
-          <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
+          <p className="mt-3 text-[16px] md:text-[18px] leading-relaxed text-gray-700 max-w-[56ch]">
+            Code that works. Support that sticks.
+          </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <a
               onClick={() => openForm()}
-              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
-              style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}
+              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold cursor-pointer"
             >
               Start a Project
             </a>
-            <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">View pricing</button>
+            <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-[hsl(var(--border))] text-gray-900">
+              View pricing
+            </button>
           </div>
           <p className="mt-4 text-sm text-gray-700">
             Prefer email? <a className="underline" href={`mailto:${site.brand.email}`}>{site.brand.email}</a>
           </p>
         </div>
+        <div className="md:col-span-5 hidden md:block">
+          {/* Accent lines block for visual interest */}
+          <div className="relative h-[200px]">
+            <div className="absolute left-8 top-4 h-[2px] w-1/2" style={{ background: "linear-gradient(90deg, hsla(45,60%,50%,0.8), transparent)" }} />
+            <div className="absolute left-16 top-12 h-[2px] w-2/3" style={{ background: "linear-gradient(90deg, hsla(45,60%,45%,0.6), transparent)" }} />
+            <div className="absolute left-24 top-20 h-[2px] w-1/3" style={{ background: "linear-gradient(90deg, hsla(45,60%,40%,0.4), transparent)" }} />
+          </div>
+        </div>
 
-        <ResultPills />
+        <div className="md:col-span-12">
+          <div className="accent-underline text-gray-900 text-xl font-semibold">What You Walk Away With</div>
+        </div>
+        <div className="md:col-span-12">
+          <ResultPills />
+        </div>
       </div>
     </section>
   );
 }
 
 function Services() {
-  const accent = site.brand.accent;
   return (
     <section id="services" className="bg-white scroll-mt-24">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-bold text-gray-900">Services</h2>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="flex items-end justify-between">
+          <h2 className="text-[22px] md:text-[26px] font-bold text-gray-900">Services</h2>
+          <div className="hidden md:block h-[1px] w-1/3" style={{ background: "linear-gradient(90deg, transparent, hsla(45,60%,50%,0.6))" }} />
+        </div>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {site.services.map((s) => {
             const Icon = ICONS[s.icon] || Code2;
             return (
-              <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
+              <div key={s.title} className="card-premium card-hover rounded-xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--secondary))]">
                     <Icon size={18} />
                   </span>
                   <div>
@@ -78,8 +99,8 @@ function Services() {
 function FAQ() {
   return (
     <section className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-bold text-gray-900">FAQ</h2>
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-[22px] md:text-[26px] font-bold text-gray-900">FAQ</h2>
         <Accordion type="single" collapsible className="mt-6">
           <AccordionItem value="item-1">
             <AccordionTrigger>What are payment terms?</AccordionTrigger>

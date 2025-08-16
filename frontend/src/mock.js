@@ -30,6 +30,8 @@ export const site = {
     { icon: "target", title: "Built to your spec — or better", note: "We don’t overpromise. We overdeliver." },
     { icon: "clock", title: "Launch in days, not months", note: "We’ve done 10‑day MVPs. And we slept." },
   ],
+  // limit how many result pills show on mobile (smaller than sm). Show all on sm+.
+  resultPillsMobileMax: 3,
   // 3-tier pricing (Starter / Growth / Scale)
   pricing: [
     {
@@ -40,7 +42,8 @@ export const site = {
       options: ["Admin dashboard", "Payment integration"],
       icon: "Rocket",
       accent: "#BFA32F", // gold
-      tint: "#FFF6D9" // light gold tint
+      tint: "#FFF6D9", // light gold tint
+      quote: "“Delivered in days — we launched on schedule.” — Founder, consumer app"
     },
     {
       plan: "Growth",
@@ -50,7 +53,8 @@ export const site = {
       options: ["User logins", "Team workflows"],
       icon: "TrendingUp",
       accent: "#2563EB", // refined blue
-      tint: "#EEF2FF" // soft indigo tint
+      tint: "#EEF2FF", // soft indigo tint
+      quote: "“Clean build, clean handoff. Exactly what we needed.” — Ops lead"
     },
     {
       plan: "Scale",
@@ -60,7 +64,8 @@ export const site = {
       options: ["APIs & integrations", "Advanced analytics", "Priority support"],
       icon: "Database",
       accent: "#6B7280", // neutral gray
-      tint: "#F3F4F6" // light gray tint
+      tint: "#F3F4F6", // light gray tint
+      quote: "“Handled complexity without drama.” — CTO, B2B SaaS"
     }
   ],
   pricingFootnote: "All tiers include consultation, scoping, and post‑launch support. Every project is production‑ready, stable from day one, and designed to scale.",

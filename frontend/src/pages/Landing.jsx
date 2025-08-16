@@ -1,6 +1,6 @@
 import React from "react";
 import { site } from "../mock";
-import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow } from "lucide-react";
+import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow } from "../components/LeafIcons";
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
@@ -59,7 +59,7 @@ function Services() {
               <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
-                    <Icon size={18} color={accent} />
+                    <Icon size={18} />
                   </span>
                   <div>
                     <div className="font-medium text-gray-900">{s.title}</div>

@@ -30,6 +30,12 @@ function Card({ tier }) {
             </ul>
           </div>
         )}
+
+        {tier.quote && (
+          <div className="mt-5 border-t border-gray-200 pt-4">
+            <p className="text-xs italic text-gray-600">{tier.quote}</p>
+          </div>
+        )}
       </div>
       <div className="px-6 pb-6 mt-auto">
         <button

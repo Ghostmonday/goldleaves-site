@@ -46,25 +46,25 @@ code {
         --radius: 0.5rem;
     }
   .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
+        --background: 215 30% 7%;          /* deep blue-gray */
+        --foreground: 220 18% 95%;          /* near white */
+        --card: 215 25% 10%;               /* surface */
+        --card-foreground: 220 18% 95%;
+        --popover: 215 25% 10%;
+        --popover-foreground: 220 18% 95%;
+        --primary: 220 15% 92%;
+        --primary-foreground: 215 30% 10%;
+        --secondary: 215 23% 14%;
+        --secondary-foreground: 220 18% 95%;
+        --muted: 215 22% 14%;
+        --muted-foreground: 215 12% 65%;
+        --accent: 215 23% 14%;
+        --accent-foreground: 220 18% 95%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
+        --border: 215 22% 22%;
+        --input: 215 22% 22%;
+        --ring: 215 20% 40%;
         --chart-1: 220 70% 50%;
         --chart-2: 160 60% 45%;
         --chart-3: 30 80% 55%;
@@ -76,4 +76,13 @@ code {
 @layer base {
   * { @apply border-border; }
   body { @apply bg-background text-foreground; }
+}
+
+/* Dark mode polish overrides so components using gray/white classes still look great */
+@layer utilities {
+  .dark .bg-white { background-color: hsl(var(--card)) !important; }
+  .dark .text-gray-900 { color: hsl(var(--foreground)) !important; }
+  .dark .text-gray-700 { color: hsl(var(--muted-foreground)) !important; }
+  .dark .border-gray-200 { border-color: hsl(var(--border)) !important; }
+  .dark .hover\:bg-gray-50:hover { background-color: hsl(var(--secondary)) !important; }
 }

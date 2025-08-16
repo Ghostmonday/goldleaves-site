@@ -8,6 +8,7 @@ import ResultPills from "../components/ResultPills";
 import PricingReveal from "../components/PricingReveal";
 import { usePricing } from "../context/PricingContext";
 import ContactSection from "../components/ContactSection";
+import CtaButton from "../components/CtaButton";
 import GoldLogo from "../components/GoldLogo";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };

@@ -12,6 +12,7 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from ".
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 
 const formSchema = z.object({
   name: z.string().min(2, "Full name is required"),
@@ -58,11 +59,25 @@ export default function ExpandableFormSection() {
   }, [open]);
 
   const onSubmit = async (data) => {
-    // Mock submit only
-    await new Promise((r) => setTimeout(r, 700));
-    toast({ title: "Request received", description: "Thanks — we'll reply within 24 hours at " + data.email });
-    setSubmitted(true);
-    reset();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    const url = `${BACKEND_URL}/api/intakes`;
+    try {
+      const res = await axios.post(url, {
+        name: data.name,
+        email: data.email,
+        project_type: data.projectType,
+        budget: data.budget,
+        description: data.description,
+        agree: true,
+        source: "web",
+      });
+      toast({ title: "Request received", description: "Thanks — we'll reply within 24 hours at " + res.data.email });
+      setSubmitted(true);
+      reset();
+    } catch (e) {
+      console.error("Intake submit failed", e);
+      toast({ title: "Submission failed", description: "Please try again or email projects@goldleaves.cloud" });
+    }
   };
 
   const accent = site.brand.accent;

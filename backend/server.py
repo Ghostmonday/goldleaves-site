@@ -1,12 +1,12 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field
-from typing import List
+from pydantic import BaseModel, Field, EmailStr
+from typing import List, Optional
 import uuid
 from datetime import datetime
 
@@ -35,7 +35,21 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-# Add your routes to the router instead of directly to app
+class IntakeCreate(BaseModel):
+    name: str = Field(min_length=2, max_length=200)
+    email: EmailStr
+    project_type: str = Field(min_length=1)
+    budget: str = Field(min_length=1)
+    description: str = Field(min_length=10, max_length=5000)
+    agree: bool
+    source: Optional[str] = None
+    user_agent: Optional[str] = None
+
+class IntakeOut(IntakeCreate):
+    id: str
+    created_at: datetime
+
+# Routes
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
@@ -52,13 +66,33 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+@api_router.post("/intakes", response_model=IntakeOut, status_code=201)
+async def create_intake(req: Request, payload: IntakeCreate):
+    if not payload.agree:
+        raise HTTPException(status_code=400, detail="Engagement acknowledgement is required")
+    item = payload.dict()
+    item.update({
+        "id": str(uuid.uuid4()),
+        "created_at": datetime.utcnow(),
+        "user_agent": payload.user_agent or req.headers.get("user-agent"),
+        "source": payload.source or "web",
+    })
+    await db.intakes.insert_one(item)
+    return IntakeOut(**item)
+
+@api_router.get("/intakes", response_model=List[IntakeOut])
+async def list_intakes(limit: int = 50):
+    limit = min(max(limit, 1), 200)
+    docs = await db.intakes.find().sort("created_at", -1).to_list(limit)
+    return [IntakeOut(**d) for d in docs]
+
 # Include the router in the main app
 app.include_router(api_router)
 
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )

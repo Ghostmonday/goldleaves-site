@@ -1,6 +1,6 @@
 import React from "react";
 import { site } from "../mock";
-import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow, Mail } from "lucide-react";
+import { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow } from "lucide-react";
 import ExpandableFormSection from "../components/ExpandableFormSection";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
@@ -8,7 +8,7 @@ import ResultPills from "../components/ResultPills";
 import PricingReveal from "../components/PricingReveal";
 import { usePricing } from "../context/PricingContext";
 import ContactSection from "../components/ContactSection";
-import HeroCube from "../components/HeroCube";
+import GoldLogo from "../components/GoldLogo";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -19,32 +19,25 @@ function Hero() {
   return (
     <section id="top" className="bg-white">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
-              Build fast. Launch smart.
-            </h1>
-            <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a
-                onClick={() => openForm()}
-                className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
-                style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}
-              >
-                Start a Project
-              </a>
-              <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">View pricing</button>
-            </div>
-            <p className="mt-4 text-sm text-gray-700">
-              Prefer email? <a className="underline" href={`mailto:${site.brand.email}`}>{site.brand.email}</a>
-            </p>
+        <div className="flex flex-col items-center text-center">
+          <GoldLogo size={64} />
+          <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            Build fast. Launch smart.
+          </h1>
+          <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              onClick={() => openForm()}
+              className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
+              style={{ background: `linear-gradient(90deg, ${accent}, #d8c45a)`, color: "#111" }}
+            >
+              Start a Project
+            </a>
+            <button onClick={() => { openPricing(); setTimeout(() => document.getElementById("pricing-block")?.scrollIntoView({ behavior: "smooth" }), 50); }} className="inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold border border-gray-300 text-gray-900">View pricing</button>
           </div>
-          <div className="hidden md:flex justify-center md:justify-end">
-            <HeroCube size={300} />
-          </div>
-          <div className="md:hidden flex justify-center mt-6">
-            <HeroCube size={220} />
-          </div>
+          <p className="mt-4 text-sm text-gray-700">
+            Prefer email? <a className="underline" href={`mailto:${site.brand.email}`}>{site.brand.email}</a>
+          </p>
         </div>
 
         <ResultPills />

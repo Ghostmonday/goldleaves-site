@@ -2,7 +2,7 @@ import React from "react";
 import { site } from "../mock";
 import { useIntakeForm } from "../context/IntakeFormContext";
 import ThemeToggle from "./ThemeToggle";
-import LeafLogo from "./LeafLogo";
+import GoldLogo from "./GoldLogo";
 import CtaButton from "./CtaButton";
 import { usePricing } from "../context/PricingContext";
 
@@ -26,7 +26,7 @@ export default function Header() {
     <header className="w-full border-b border-gray-200 bg-white/90 backdrop-blur sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3 select-none">
-          <LeafLogo size={28} color={accent} />
+          <GoldLogo size={28} />
           <span className="text-xl font-semibold tracking-tight text-gray-900">{site.brand.name}</span>
         </a>
         <nav className="hidden md:flex items-center gap-6 text-sm">

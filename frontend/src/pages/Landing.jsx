@@ -20,7 +20,7 @@ function Hero() {
         <div className="flex flex-col items-center text-center">
           <LeafLogo size={64} color={accent} />
           <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
-            Build fast. Launch smart. No fluff.
+            Build fast. Launch smart.
           </h1>
           <p className="mt-3 text-lg text-gray-700">Code that works. Support that sticks.</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">

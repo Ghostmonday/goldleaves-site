@@ -22,7 +22,15 @@ export const site = {
     { icon: "CloudCog", title: "API‑first platforms with clean contracts" },
     { icon: "Workflow", title: "Systems that reduce overhead, not add it" }
   ],
-  // Refactored 3-tier pricing to match provided visual reference
+  deliverables: [
+    { icon: "check", title: "Launched product at your domain", note: "Live. Hosted. Working. No ‘Coming Soon’ nonsense." },
+    { icon: "key", title: "You keep the keys", note: "Admin access. Source code. Infra handoff. It’s yours." },
+    { icon: "lab", title: "Tested and deployed", note: "Not ‘a build.’ A deployed, working, error‑free app." },
+    { icon: "doc", title: "Docs you’ll actually read", note: "Simple instructions. No jungle of Notion pages." },
+    { icon: "target", title: "Built to your spec — or better", note: "We don’t overpromise. We overdeliver." },
+    { icon: "clock", title: "Launch in days, not months", note: "We’ve done 10‑day MVPs. And we slept." },
+  ],
+  // 3-tier pricing (Starter / Growth / Scale)
   pricing: [
     {
       plan: "Starter",

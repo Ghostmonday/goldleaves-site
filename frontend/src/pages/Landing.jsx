@@ -8,6 +8,7 @@ import PricingThree from "../components/PricingThree";
 import CaseStudies from "../components/CaseStudies";
 import LeafLogo from "../components/LeafLogo";
 import CtaButton from "../components/CtaButton";
+import ResultPills from "../components/ResultPills";
 
 const ICONS = { Code2, LayoutDashboard, Cpu, CreditCard, CloudCog, Workflow };
 
@@ -34,49 +35,8 @@ function Hero() {
           </p>
         </div>
 
-        {/* Trusted by row */}
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 text-gray-500 text-sm">
-          {["ureport", "GitHub", "Notion", "Stripe", "GSuite"].map((brand) => (
-            <div key={brand} className="border border-gray-200 rounded-md py-3 px-4 text-center bg-white/70">{brand}</div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Services() {
-  const accent = site.brand.accent;
-  const DESCS = {
-    Code2: "Full‑stack products that ship and scale.",
-    LayoutDashboard: "Secure admin tools clients actually use.",
-    Cpu: "Useful AI — assistants, workflows, not buzzwords.",
-    CreditCard: "Subscriptions and payments wired for growth.",
-    CloudCog: "Clear, well‑documented APIs for teams.",
-    Workflow: "Automations that reduce overhead, not add it.",
-  };
-  return (
-    <section id="services" className="bg-white">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <h2 className="text-2xl font-bold text-gray-900">Services</h2>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {site.services.map((s) => {
-            const Icon = ICONS[s.icon] || Code2;
-            return (
-              <div key={s.title} className="border border-gray-200 rounded-lg p-5 bg-white transform transition duration-200 hover:-translate-y-1 hover:shadow-md">
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: "#F7F7F7", border: "1px solid #E5E7EB" }}>
-                    <Icon size={18} color={accent} />
-                  </span>
-                  <div>
-                    <div className="font-medium text-gray-900">{s.title}</div>
-                    <p className="text-sm text-gray-600 mt-1">{DESCS[s.icon] || "Production‑ready, maintainable software."}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* Result Pills section replaces tool badges */}
+        <ResultPills />
       </div>
     </section>
   );
@@ -116,7 +76,6 @@ export default function Landing() {
       <Hero />
       <ExpandableFormSection />
       <CaseStudies />
-      <Services />
       <PricingThree />
       <FAQ />
     </main>
